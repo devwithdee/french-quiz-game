@@ -1,11 +1,9 @@
 import React, {useState, useContext} from "react";
-import { Questions } from '../Helpers/level1questions';
+import { Questions2 } from '../Helpers/level2questions';
 import { QuizContext } from '../Helpers/Context';
 import { MdPlayCircleFilled } from "react-icons/md";
 
-
-
-function Quiz() {
+function Quiz2() {
 
     //import quizcontext to keep track of quizstate and score
 
@@ -14,7 +12,6 @@ function Quiz() {
     //create state to keep track of questions and update the question based on the state
     
     const [currQuestion, setCurrQuestion] = useState(0);
-
 
     /*when the button is clicked load the next set of questions and answers 
     everytime an button is clicked update the score if the answer is correct and load next question
@@ -27,7 +24,7 @@ function Quiz() {
             setScore(score + 1);
         }
 
-        if(nextQuestion < Questions.length) {
+        if(nextQuestion < Questions2.length) {
             setCurrQuestion(nextQuestion);
         } else {
             setQuizState("Scoreboard");
@@ -40,7 +37,7 @@ function Quiz() {
 
     //pass the question in questions object to the message text
 
-    msg.text = Questions[currQuestion].question;
+    msg.text = Questions2[currQuestion].question;
 
     //get french voice from speechSynthesis
 
@@ -56,11 +53,11 @@ function Quiz() {
     return (
         <div className="quiz-container">
             <div className="question-container">
-            <h1>{Questions[currQuestion].question}</h1>
+            <h1>{Questions2[currQuestion].question}</h1>
             <button className="play-bttn" onClick={handleMsg}><MdPlayCircleFilled className="play-bttn-icon"/></button>
             </div>
             <div className="answer-container">
-                {Questions[currQuestion].answerOptions.map((answerOption) => (
+                {Questions2[currQuestion].answerOptions.map((answerOption) => (
                 <button onClick={()=> handleButtonClick(answerOption.iscorrect)} >
                     {answerOption.answers}
                 </button>
@@ -70,4 +67,4 @@ function Quiz() {
     )
 }
 
-export default Quiz;
+export default Quiz2;

@@ -10,11 +10,11 @@ export const Questions = [
     },
     {
         question:
-            "Bienvenue",
+            "Non",
         answerOptions: [
-            { answers: "Goodbye", iscorrect: false },
-            { answers: "Good Morning", iscorrect: false },
-            { answers: "Welcome", iscorrect: true }
+            { answers: "None", iscorrect: false },
+            { answers: "No", iscorrect: true },
+            { answers: "Yes", iscorrect: false }
         ]
     },
     {
@@ -37,38 +37,38 @@ export const Questions = [
     },
     {
         question:
-            "Parlez-vois anglais",
+            "Femme",
         answerOptions: [
-            { answers: "Would you like to go to a party", iscorrect: false },
-            { answers: "Please speak English", iscorrect: false },
-            { answers: "Do you speak English", iscorrect: true }
+            { answers: "Woman", iscorrect: true },
+            { answers: "Sister", iscorrect: false },
+            { answers: "Man", iscorrect: false }
         ]
     },
     {
         question:
-            "Je ne parle pas francais",
+            "Amour",
         answerOptions: [ 
-            { answers: "She is from France", iscorrect: false },
-            { answers: "She is a french woman", iscorrect: false },
-            { answers: "Do you speak french", iscorrect: true }
+            { answers: "Love", iscorrect: true },
+            { answers: "Amy", iscorrect: false },
+            { answers: "Armor", iscorrect: false }
         ]
     },
     {
         question:
-            "A tout a l'heure",
+            "Homme",
         answerOptions: [
-            { answers: "You are the best", iscorrect: false },
-            { answers: "I caught a trout", iscorrect: false },
-            { answers: "See you later", iscorrect: true }
+            { answers: "Man", iscorrect: true },
+            { answers: "Woman", iscorrect: false },
+            { answers: "Father", iscorrect: false }
         ]
     },
     {
         question:
-            "Merci beaucoup",
+            "Merci",
         answerOptions: [
-            { answers: "Thank you buttercup", iscorrect: false },
-            { answers: "Thank you for the soup", iscorrect: false },
-            { answers: "Thank you very much", iscorrect: true }
+            { answers: "Thank you", iscorrect: true },
+            { answers: "Your welcome", iscorrect: false },
+            { answers: "Bye", iscorrect: false }
         ]
     },
     {
@@ -77,7 +77,7 @@ export const Questions = [
         answerOptions: [
             { answers: "A river", iscorrect: false },
             { answers: "Goodbye", iscorrect: true },
-            { answers: "I will see you later", iscorrect: false }
+            { answers: "A biscut", iscorrect: false }
         ]
     },
     {
@@ -85,8 +85,8 @@ export const Questions = [
             "Da rien",
         answerOptions: [
             { answers: "You're welcome", iscorrect: true },
-            { answers: "The rain", iscorrect: false },
-            { answers: "In the rain", iscorrect: false }
+            { answers: "Rain", iscorrect: false },
+            { answers: "Hello", iscorrect: false }
         ]
     },
 

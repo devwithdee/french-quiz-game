@@ -13,7 +13,7 @@ export default function StartGame() {
             <h1>Test Your French</h1>
             <button className="start-bttn"
             onClick={() => {
-                setQuizState("Quiz");
+                setQuizState("Levels");
                 }}
                 >
                 Start Game
