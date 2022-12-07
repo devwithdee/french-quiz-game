@@ -5,39 +5,47 @@ import "../App.css";
 
 function ScoreAnim() {
 
+    //use score from results
 
     const { score } = useContext(QuizContext);
 
+    //calculate percentage of score to display in the component
+    
     const number = score * 10;
+
+    // create strokedashoffset state
 
     useState(472);
 
     const [strokeDashoffset, updateStrokeDashOffset] = useState();
 
+    //function to change the strokedashoffset size depending on the total score
+
     function setStrokeDashOffset() {
         if (number === 100) {
             updateStrokeDashOffset(0)
         } else if (number === 90) {
-            updateStrokeDashOffset(47.2)
+            updateStrokeDashOffset(75)
         } else if (number === 80) {
-            updateStrokeDashOffset(94.4)
+            updateStrokeDashOffset(110)
         } else if (number === 70) {
-            updateStrokeDashOffset(141.6)
+            updateStrokeDashOffset(150)
         } else if (number === 60) {
-            updateStrokeDashOffset(188.8)
+            updateStrokeDashOffset(190)
         } else if (number === 50) {
             updateStrokeDashOffset(250)
         } else if (number === 40) {
-            updateStrokeDashOffset(283)
+            updateStrokeDashOffset(300)
         } else if (number === 30) {
-            updateStrokeDashOffset(330.4)
+            updateStrokeDashOffset(340)
         } else if (number === 20) {
-            updateStrokeDashOffset(377.6)
+            updateStrokeDashOffset(390)
         } else if (number === 10) {
-            updateStrokeDashOffset(424.8)
+            updateStrokeDashOffset(430)
         } else (updateStrokeDashOffset(472))
     };
 
+    //set the strokedashoffset to update once each time the scoreanim component mounts
 
     useEffect(() => {
         setStrokeDashOffset();
