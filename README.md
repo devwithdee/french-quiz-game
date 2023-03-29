@@ -17,7 +17,6 @@ Project is created with:
 ## Features
 * Final score result with animation
 * Multiple levels: easy, medium, and hard
-* Menu with product cards
 * Utilities/Helpers:
   - Quiz context to:
     - Keep track of score
