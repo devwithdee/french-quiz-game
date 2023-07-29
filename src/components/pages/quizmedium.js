@@ -1,10 +1,13 @@
-import React, {useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Questions2 } from '../Helpers/level2questions';
 import { QuizContext } from '../Helpers/Context';
+import { RestartButton } from "../../components/CommonUI/restartButton";
+import { useAccessibilityContext } from "../Helpers/accessibilityContext";
 import { AccessibleFeature } from "../../features/text_to_speech/accessibility";
 
 function Quiz2() {
-
+    //import speechcontext to keep track of speechsynthesis state
+    const { speechState, setSpeechState } = useAccessibilityContext();
 
     //import quizcontext to keep track of quizstate and score
 
@@ -20,25 +23,35 @@ function Quiz2() {
 
     const handleButtonClick = (iscorrect) => {
         const nextQuestion = currQuestion + 1;
-
+        //add to score if true
         if (iscorrect === true) {
             setScore(score + 1);
-        }
 
+        }
+        //go to the next question after answer is clicked
         if (nextQuestion < Questions2.length) {
             setCurrQuestion(nextQuestion);
+
         } else {
+            //all questions complete show score
             setQuizState("Scoreboard");
+
+        }
+         //stop speechsynthesis api from speaking if an answer is clicked
+         if (speechState !== "stopped") {
+            window.speechSynthesis.cancel();
+            setSpeechState("stopped");
+            console.log("all stopped");
         }
     }
 
-    const questionText = 
-    Questions2[currQuestion]?.question + "translate to which of the following?" +
-    Questions2[currQuestion].answerOptions
-   .map((answerOption) => answerOption.answers)
-   .join(", ");
-   console.log("Current Question Index:", currQuestion);
-   console.log("Question Text:", questionText);
+    const questionText =
+        Questions2[currQuestion]?.question + "translate to which of the following?" +
+        Questions2[currQuestion].answerOptions
+            .map((answerOption) => answerOption.answers)
+            .join(", ");
+    console.log("Current Question Index:", currQuestion);
+    console.log("Question Text:", questionText);
 
     return (
         <div className="quiz-container">
@@ -52,6 +65,7 @@ function Quiz2() {
                         <p>{answerOption.answers}</p>
                     </button>
                 ))}
+                < RestartButton />
             </div>
         </div>
     )

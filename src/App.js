@@ -6,6 +6,8 @@ import QuizMedium from "./components/pages/quizmedium";
 import QuizHard from "./components/pages/quizhard";
 import Scoreboard from "./components/pages/results";
 import Levels from "./components/pages/levels";
+import { AccessibilityProvider } from "./components/Helpers/accessibilityContext";
+
 
 
 //create context to keep track of quiz state and score
@@ -24,6 +26,7 @@ const [quizState, setQuizState] = useState("Start");
 const [score, setScore] = useState(0);
 
   return (
+    <AccessibilityProvider>
     <div className="container">
       <div className='quiz-container'>
         <QuizContext.Provider value=
@@ -37,6 +40,7 @@ const [score, setScore] = useState(0);
         </QuizContext.Provider>
       </div>
     </div>
+            </AccessibilityProvider>
   );
 }
 

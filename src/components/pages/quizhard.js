@@ -2,10 +2,14 @@ import React, { useState, useContext } from "react";
 import { Questions3 } from '../Helpers/level3questions';
 import { QuizContext } from '../Helpers/Context';
 import { AccessibleFeature } from "../../features/text_to_speech/accessibility";
-import { RestartButton } from "../CommonUI/restartButton";
+import { RestartButton } from "../../components/CommonUI/restartButton";
+import { useAccessibilityContext } from "../Helpers/accessibilityContext";
+
 
 
 function Quiz3() {
+    //import speechcontext to keep track of speechsynthesis state
+    const { speechState, setSpeechState } = useAccessibilityContext();
 
     //import quizcontext to keep track of quizstate and score
 
@@ -21,15 +25,24 @@ function Quiz3() {
 
     const handleButtonClick = (iscorrect) => {
         const nextQuestion = currQuestion + 1;
-
+        //add to score if true
         if (iscorrect === true) {
             setScore(score + 1);
-        }
 
+        }
+        //go to the next question after answer is clicked
         if (nextQuestion < Questions3.length) {
             setCurrQuestion(nextQuestion);
+
         } else {
+            //all questions complete show score
             setQuizState("Scoreboard");
+        }
+         //stop speechsynthesis api from speaking if an answer is clicked
+         if (speechState !== "stopped") {
+            window.speechSynthesis.cancel();
+            setSpeechState("stopped");
+            console.log("all stopped");
         }
     }
 

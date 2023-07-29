@@ -1,9 +1,13 @@
-import React, {useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
+import { useAccessibilityContext } from "../../components/Helpers/accessibilityContext";
+
 
 export const AccessibleFeature = (props) => {
-  const [speechState, setSpeechState] = useState("stopped");
-  const [speed, setSpeed] = useState(.75);
+  const { speechState, setSpeechState, speed, setSpeed } = useAccessibilityContext();
+
   const [utteranceText, setUtteranceText] = useState("");
+
+  
 
   const utterance = useMemo(() => new SpeechSynthesisUtterance(), []);
   utterance.text = utteranceText; // Use the utteranceText state instead of props
@@ -13,7 +17,7 @@ export const AccessibleFeature = (props) => {
   useEffect(() => {
     const handleVoicesChanged = () => {
       let voices = speechSynthesis.getVoices();
-      utterance.voice = voices[9]; // Set the desired voice after 'voiceschanged' event
+      utterance.voice = voices[4]; // Set the desired voice after 'voiceschanged' event
     };
 
     speechSynthesis.addEventListener("voiceschanged", handleVoicesChanged);
@@ -32,38 +36,26 @@ export const AccessibleFeature = (props) => {
     setUtteranceText(props.question); // Update utteranceText state when props.question changes
   }, [props.question]);
 
-  const speechOn = () => {
+
+  function speechOn () {
     if (speechState === "stopped") {
       setSpeechState("playing");
       window.speechSynthesis.speak(utterance);
-    } else if (speechState === "paused") {
-      window.speechSynthesis.resume();
-      setSpeechState("playing");
-    } else if (speechState === "playing") {
-        window.speechSynthesis.cancel();
-        setSpeechState("stopped");
-        setSpeechState("playing");
-        window.speechSynthesis.speak(utterance);
-        setSpeechState("stopped");
-      }
+      console.log("played")
+    }
   };
 
   const speechOff = () => {
     if (speechState !== "stopped") {
       window.speechSynthesis.cancel();
       setSpeechState("stopped");
-      
-    }
-  };
+      console.log("stopped");
 
-  const pause = () => {
-    if (speechState === "playing") {
-      window.speechSynthesis.pause();
-      setSpeechState("paused");
     }
   };
 
   
+ 
 
   // return the html for the accessibility feature
   return (
@@ -74,7 +66,7 @@ export const AccessibleFeature = (props) => {
         id="speed"
         name="speed"
         min="0.25"
-        max="5"
+        max="3"
         step={0.5}
         value={speed}
         onChange={(e) => setSpeed(parseFloat(e.target.value))}
@@ -82,9 +74,7 @@ export const AccessibleFeature = (props) => {
       <button id="play" onClick={speechOn}>
         Play
       </button>
-      <button id="pause" onClick={pause}>
-        Pause
-      </button>
+
       <button id="stop" onClick={speechOff}>
         Stop
       </button>
