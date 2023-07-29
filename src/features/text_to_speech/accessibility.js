@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
+import '../text_to_speech/accessibility.css';
 import { useAccessibilityContext } from "../../components/Helpers/accessibilityContext";
 
 
@@ -60,8 +61,10 @@ export const AccessibleFeature = (props) => {
   // return the html for the accessibility feature
   return (
     <div className="accessibility-container">
+      <div className="speed-container">
       <label htmlFor="speed">Speed</label>
       <input
+        className="speed"
         type="range"
         id="speed"
         name="speed"
@@ -71,6 +74,8 @@ export const AccessibleFeature = (props) => {
         value={speed}
         onChange={(e) => setSpeed(parseFloat(e.target.value))}
       />
+      </div>
+      <div className="speechbtn-container">
       <button id="play" onClick={speechOn}>
         Play
       </button>
@@ -78,6 +83,7 @@ export const AccessibleFeature = (props) => {
       <button id="stop" onClick={speechOff}>
         Stop
       </button>
+      </div>
     </div>
   );
 };

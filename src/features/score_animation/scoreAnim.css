@@ -1,0 +1,63 @@
+
+  /* score progress bar */
+  
+  .score {
+    width: 160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+  
+  }
+
+  .animation-container {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    width: 180px;
+    height: 180px;
+    justify-content: center;
+  }
+
+  
+  .outer {
+    box-sizing: border-box;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.15),
+    -5px -5px 10px 2px rgba(255,255,255, 0.15);
+  }
+  
+  
+  .inner {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    box-shadow: inset 3px 3px 5px 1px rgba(0, 0, 0, 0.2),
+    -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+    0px 10px 5px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  svg {
+    position: absolute;
+  
+  }
+  
+  #circle {
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 20px;
+    stroke-dasharray: 472;
+    animation: anim ease 2s;
+  }
+  
+  /* animate the strokedashoffset using js variable from scoreanim component */
+  
+  @keyframes  anim {
+    0% {
+        stroke-dashoffset: 472;
+    } 100% {
+        stroke-dashoffset: var(strokeDashoffset);
+    }
+  }

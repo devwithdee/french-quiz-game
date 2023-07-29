@@ -1,0 +1,26 @@
+
+.accessibility-container {
+    flex-direction: row;
+  }
+
+  .speechbtn-container {
+    display: flex;
+    flex-direction: row;
+}
+
+  .accessibility-container button {
+    font-size: 1em;
+    min-width: 10rem;
+  }
+
+  @media only screen and (max-width: 700px) and (orientation: portrait) {
+    .accessibility-container {
+    flex-direction: column;
+    }
+    .accessibility-container button {
+        max-height: 2.5rem;
+    }
+    .speechbtn-container {
+        flex-direction: column;
+    }
+  }

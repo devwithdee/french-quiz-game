@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { QuizContext } from '../../components/Helpers/Context';
-import "../../App.css";
+import "../score_animation/scoreAnim.css";
 
 
 

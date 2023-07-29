@@ -1,0 +1,50 @@
+
+  /* layout */
+  
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  
+  .container {
+    width: 100vw;
+    min-height: 100vh;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .quiz-container {
+    width: 80vw;
+    min-height: 90vh;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: #fff;
+    border-radius: 12px;
+  }
+
+  .answer-container {
+    gap: .6em;
+    width: 100%;
+  }
+  
+  /* flexbox for question and play button */ 
+  
+  .question-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: .5em;
+  }
