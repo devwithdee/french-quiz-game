@@ -1,17 +1,28 @@
 import React, {useState, useContext} from "react";
-import { Questions3 } from '../Helpers/level3questions';
+import { Questions } from '../Helpers/level1questions';
 import { QuizContext } from '../Helpers/Context';
 import { MdPlayCircleFilled } from "react-icons/md";
 
-function Quiz3() {
+
+
+function Quiz() {
 
     //import quizcontext to keep track of quizstate and score
 
-    const { score, setScore, quizState, setQuizState} = useContext(QuizContext);
+    const { score, setScore, setQuizState} = useContext(QuizContext);
+
+    const restartGame = () => {
+        setQuizState("Start");
+    }
+
+    const refreshPage = () => {
+        window.location.reload();
+    }
 
     //create state to keep track of questions and update the question based on the state
     
     const [currQuestion, setCurrQuestion] = useState(0);
+
 
     /*when the button is clicked load the next set of questions and answers 
     everytime an button is clicked update the score if the answer is correct and load next question
@@ -24,7 +35,7 @@ function Quiz3() {
             setScore(score + 1);
         }
 
-        if(nextQuestion < Questions3.length) {
+        if(nextQuestion < Questions.length) {
             setCurrQuestion(nextQuestion);
         } else {
             setQuizState("Scoreboard");
@@ -37,7 +48,7 @@ function Quiz3() {
 
     //pass the question in questions object to the message text
 
-    msg.text = Questions3[currQuestion].question;
+    msg.text = Questions[currQuestion].question;
 
     //get french voice from speechSynthesis
 
@@ -53,18 +64,21 @@ function Quiz3() {
     return (
         <div className="quiz-container">
             <div className="question-container">
-            <h1>{Questions3[currQuestion].question}</h1>
+            <h1>{Questions[currQuestion].question}</h1>
             <button className="play-bttn" onClick={handleMsg}><MdPlayCircleFilled className="play-bttn-icon"/></button>
             </div>
             <div className="answer-container">
-                {Questions3[currQuestion].answerOptions.map((answerOption) => (
+                {Questions[currQuestion].answerOptions.map((answerOption) => (
                 <button onClick={()=> handleButtonClick(answerOption.iscorrect)} >
                     {answerOption.answers}
                 </button>
                 ))}
+                <button onClick={() => { restartGame(); refreshPage(); }} className="restart-bttn">
+                    Re-Start
+                </button>
             </div>
         </div>
     )
 }
 
-export default Quiz3;
+export default Quiz;

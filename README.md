@@ -6,12 +6,12 @@
 * [Website](#website)
 
 ## General info
-A quiz game to test your French.
+An accessible quiz game with 3 difficulty levels to test your French.
 	
 ## Technologies
 Project is created with:
 * React.js
-* WebSpeechAPI
+* SpeechSynthesis API
 * Netlify
 
 ## Features
@@ -22,8 +22,10 @@ Project is created with:
     - Keep track of score
     - Render different questions for different levels
     - Set quiz state
-* WebSpeechAPI to add speech functionality to each question
-  - When user presses a button the question is spoken out loud in French
+* SpeechSynthesis API to add accessible functionality to each question
+  - Play questions and answer out loud
+  - Pause speech
+  - Change speed of speech
 * Responsive/Mobile friendly design
 
 ## Website

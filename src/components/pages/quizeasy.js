@@ -1,7 +1,8 @@
 import React, {useState, useContext} from "react";
 import { Questions } from '../Helpers/level1questions';
 import { QuizContext } from '../Helpers/Context';
-import { MdPlayCircleFilled } from "react-icons/md";
+import { RestartButton } from "../CommonUI/restartButton";
+import { AccessibleFeature } from "../../features/text_to_speech/accessibility";
 
 
 
@@ -9,7 +10,7 @@ function Quiz() {
 
     //import quizcontext to keep track of quizstate and score
 
-    const { score, setScore, quizState, setQuizState} = useContext(QuizContext);
+    const { score, setScore, setQuizState} = useContext(QuizContext);
 
     //create state to keep track of questions and update the question based on the state
     
@@ -49,15 +50,19 @@ function Quiz() {
 
     //create function to speak message when button is clicked
 
-    const handleMsg = () => {
-    window.speechSynthesis.speak(msg);
-    }
+    const questionText = 
+    Questions[currQuestion]?.question + "translate to which of the following?" +
+    Questions[currQuestion].answerOptions
+   .map((answerOption) => answerOption.answers)
+   .join(", ");
+   console.log("Current Question Index:", currQuestion);
+   console.log("Question Text:", questionText);
 
     return (
         <div className="quiz-container">
             <div className="question-container">
             <h1>{Questions[currQuestion].question}</h1>
-            <button className="play-bttn" onClick={handleMsg}><MdPlayCircleFilled className="play-bttn-icon"/></button>
+            <AccessibleFeature question={questionText} />
             </div>
             <div className="answer-container">
                 {Questions[currQuestion].answerOptions.map((answerOption) => (
@@ -65,6 +70,7 @@ function Quiz() {
                     {answerOption.answers}
                 </button>
                 ))}
+                < RestartButton />
             </div>
         </div>
     )

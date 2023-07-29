@@ -173,6 +173,15 @@ html {
     height: 180px;
     justify-content: center;
   }
+
+  .accessibility-container {
+    flex-direction: row;
+  }
+
+  .accessibility-container button {
+    font-size: 1em;
+    min-width: 10rem;
+  }
   
   .outer {
     box-sizing: border-box;

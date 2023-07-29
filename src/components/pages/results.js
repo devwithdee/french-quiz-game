@@ -1,7 +1,7 @@
 import React, { useContext} from "react";
 import { QuizContext } from '../Helpers/Context';
-import "../App.css";
-import ScoreAnim from "./scorechart";
+import "../../App.css";
+import ScoreAnim from "../../features/score_animation/scoreAnim";
 
 
 function Scoreboard() {
