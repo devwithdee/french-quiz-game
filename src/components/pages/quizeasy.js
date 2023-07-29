@@ -56,7 +56,7 @@ function Quiz() {
     //create function to speak message when button is clicked
 
     const questionText =
-        Questions[currQuestion]?.question + " translates to which of the following?" +
+        Questions[currQuestion]?.question + " translates to which of the following words? " +
         Questions[currQuestion].answerOptions
             .map((answerOption) => answerOption.answers)
             .join(", ");

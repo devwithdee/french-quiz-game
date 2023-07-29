@@ -46,7 +46,7 @@ function Quiz2() {
     }
 
     const questionText =
-        Questions2[currQuestion]?.question + "translate to which of the following?" +
+        Questions2[currQuestion]?.question + "translate to which of the following words? " +
         Questions2[currQuestion].answerOptions
             .map((answerOption) => answerOption.answers)
             .join(", ");

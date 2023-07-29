@@ -8,7 +8,7 @@ export const AccessibleFeature = (props) => {
 
   const [utteranceText, setUtteranceText] = useState("");
 
-  
+
 
   const utterance = useMemo(() => new SpeechSynthesisUtterance(), []);
   utterance.text = utteranceText; // Use the utteranceText state instead of props
@@ -38,7 +38,7 @@ export const AccessibleFeature = (props) => {
   }, [props.question]);
 
 
-  function speechOn () {
+  function speechOn() {
     if (speechState === "stopped") {
       setSpeechState("playing");
       window.speechSynthesis.speak(utterance);
@@ -55,34 +55,35 @@ export const AccessibleFeature = (props) => {
     }
   };
 
-  
- 
+
 
   // return the html for the accessibility feature
   return (
     <div className="accessibility-container">
       <div className="speed-container">
-      <label htmlFor="speed">Speed</label>
-      <input
-        className="speed"
-        type="range"
-        id="speed"
-        name="speed"
-        min="0.25"
-        max="3"
-        step={0.5}
-        value={speed}
-        onChange={(e) => setSpeed(parseFloat(e.target.value))}
-      />
+        <label htmlFor="speed">Speed</label>
+        <fieldset class="slider-container">
+          <input
+            className="input-slider"
+            type="range"
+            id="speed"
+            name="speed"
+            min="0.1"
+            max="1.5"
+            step={0.2}
+            value={speed}
+            onChange={(e) => setSpeed(parseFloat(e.target.value))}
+          />
+        </fieldset>
       </div>
       <div className="speechbtn-container">
-      <button id="play" onClick={speechOn}>
-        Play
-      </button>
+        <button id="play" onClick={speechOn}>
+          Play
+        </button>
 
-      <button id="stop" onClick={speechOff}>
-        Stop
-      </button>
+        <button id="stop" onClick={speechOff}>
+          Stop
+        </button>
       </div>
     </div>
   );

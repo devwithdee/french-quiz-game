@@ -12,9 +12,8 @@ html {
   
   body {
     overflow-x: hidden;
-    background: rgb(63,251,198);
-    background: radial-gradient(circle, rgb(63, 182, 251) 0%, rgb(42, 96, 189) 100%);
-    color: #000;
+    background: rgb(87, 109, 177);
+    color: #ffffff;
 
   }
   
