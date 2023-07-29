@@ -20,6 +20,11 @@
     align-items: center;
     
   }
+
+  .intro {
+    width: 80%;
+    padding: 1em;
+  }
   
   .quiz-container {
     width: 90vw;

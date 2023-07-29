@@ -1,6 +1,8 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { QuizContext } from '../../components/Helpers/Context';
 import "../score_animation/scoreAnim.css";
+import Lottie from 'react-lottie';
+import animationData from '../../components/CommonUI/Winner.json';
 
 
 
@@ -8,6 +10,7 @@ function ScoreAnim() {
     const { score } = useContext(QuizContext);
     const number = score * 10;
     const [strokeDashoffset, setStrokeDashOffset] = useState(472);
+    const [showAnimation, setShowAnimation] = useState(false);
 
     const updateStrokeDashOffset = useCallback(() => {
         if (number === 100) {
@@ -40,6 +43,25 @@ function ScoreAnim() {
     }, [updateStrokeDashOffset]);
 
 
+    const winnerFunction = useCallback(() => {
+        if (number === 100) {
+          setShowAnimation(true);
+        }
+      }, [number]);
+    
+      useEffect(() => {
+        winnerFunction();
+      }, [winnerFunction]);
+
+      // Lottie options (adjust to fit your animation)
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
 
     return (
         <div className="animation-container">
@@ -53,8 +75,8 @@ function ScoreAnim() {
             <svg width="160px" height="160px">
                 <defs>
                     <linearGradient id="GradientColor">
-                        <stop offset="0%" stop-color="#e91e63" />
-                        <stop offset="100%" stop-color="#673ab7" />
+                        <stop offset="0%" stop-color="#14CBC6" />
+                        <stop offset="100%" stop-color="#14CB30" />
                     </linearGradient>
                 </defs>
                 <circle id="circle" cx="80" cy="80" r="70" strokeLinecap="round" strokeDashoffset={strokeDashoffset}

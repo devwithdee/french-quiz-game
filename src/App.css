@@ -12,8 +12,14 @@ html {
   
   body {
     overflow-x: hidden;
-    background: rgb(87, 109, 177);
-    color: #ffffff;
-
+    background-color: black;
   }
   
+  .dark {
+    background-color: #0D1F61 ;
+    color: #e6ccb4;
+  }
+  .light {
+    background-color: #e7d8c9;
+    color: #0D1F61;
+  }

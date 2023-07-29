@@ -45,12 +45,6 @@
 	box-sizing: border-box;
 }
 
-body {
-	min-block-size: 100vh;
-	display: grid;
-	place-content: center;
-	background: hsl(208, 12%, 72%);
-}
 
 .slider-container {
 	--width: clamp(10rem, calc(10.18rem + 43.64vw), 15rem);
