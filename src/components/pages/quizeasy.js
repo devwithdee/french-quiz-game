@@ -26,11 +26,11 @@ function Quiz() {
     array then change the quizstate to results*/
 
     const handleButtonClick = (iscorrect) => {
+
         const nextQuestion = currQuestion + 1;
         //add to score if true
         if (iscorrect === true) {
             setScore(score + 1);
-            //I can add the ability to add class to change button color green
             
         }
         //go to the next question after answer is clicked
