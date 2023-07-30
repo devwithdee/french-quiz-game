@@ -21,6 +21,10 @@ button {
   button:active {
     background-color: rgb(135, 201, 153);
   }
+
+  .level-button {
+    width: 10rem;
+  }
   
   .dark button {
     background-color: beige;
