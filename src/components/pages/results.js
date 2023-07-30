@@ -10,6 +10,8 @@ function Scoreboard() {
 
     const { score, setQuizState } = useContext(QuizContext);
 
+    //set quiz state back to start
+
     const handleBttnClick = () => {
         setQuizState("Start");
     }
@@ -18,7 +20,7 @@ function Scoreboard() {
     }
 
     return (
-        <div class="results-container">
+        <div className="results-container">
             <h1>You scored out {score} of 10</h1>
             <div className="results">
                 <ScoreAnim />
