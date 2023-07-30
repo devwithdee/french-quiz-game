@@ -17,8 +17,8 @@ body {
 
 .dark {
   background-color: #0D1F61;
-  color: #e6ccb4;
-  background-image: url(./components/CommonUI/eiffeltowerdark.jpg);
+  color: #fff7ef;
+  background-image: url(./components/CommonUI/franceflag.jpg);
   background-position: center;
   background-size: cover;
 }
@@ -26,13 +26,39 @@ body {
 .light {
   background-color: #f6ebe0;
   color: #0D1F61;
-  background-image: url(./components/CommonUI/eiffeltowerlight.jpg);
+  background-image: url(./components/CommonUI/franceflag.jpg);
   background-size:cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 
+
+.dark .quiz-container {
+  background-color: hsla(226, 100%, 6%, 0.257);
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(.3px);
+  
+}
+
+.light .start-container {
+  background-color: rgba(255, 255, 255, 0.671);
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(1.3px);
+}
+
+.light .level-container {
+  background-color: rgba(255, 255, 255, 0.671);
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(1.3px);
+}
+
 .light .quiz-container {
-  background-color: rgba(126, 201, 224, 0.435);
+  background-color: rgba(255, 255, 255, 0.257);
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(.3px);
 }

@@ -27,8 +27,8 @@
   }
   
   .quiz-container {
-    width: 90vw;
-    min-height: 90vh;
+    width: 100vw;
+    min-height: 100vh;
     height: fit-content;
     display: flex;
     flex-direction: column;
