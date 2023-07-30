@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useContext, useState } from "react";
-import { QuizContext } from '../../components/Helpers/Context';
+import { QuizContext } from '../../components/Helpers/quizContext';
 import "../score_animation/scoreAnim.css";
 
 export const ScoreSVG = () => {

@@ -52,3 +52,17 @@
     flex-wrap: wrap;
     padding: .5em;
   }
+
+  .level-container {
+    display: flex;
+    gap: 1em;
+  }
+
+  .select-level-container {
+    width: 30vw;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    gap: .5em;
+  }

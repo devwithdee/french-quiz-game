@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import "./App.css";
 import StartGame from "./components/pages/startGame";
-import QuizEasy from "./components/pages/quizeasy";
-import QuizMedium from "./components/pages/quizmedium";
-import QuizHard from "./components/pages/quizhard";
+import Quiz from "./components/pages/quizeasy";
 import Scoreboard from "./components/pages/results";
 import Levels from "./components/pages/levels";
+import questionsData from '../src/components/Helpers/questions.json';
 import { AccessibilityProvider } from "./components/Helpers/accessibilityContext";
-
-
-
 
 
 //create context to keep track of quiz state and score
 
-import { QuizContext } from "./components/Helpers/Context";
+import { QuizContext } from "./components/Helpers/quizContext";
 
 function App() {
 
@@ -26,6 +22,10 @@ function App() {
   //create state to track score
 
   const [score, setScore] = useState(0);
+
+  const [selectedLevel, setSelectedLevel] = useState("easy");
+
+  const [quizLevel, setQuizLevel] = useState(questionsData[selectedLevel]);
 
   const [theme, setTheme] = useState("light");
 
@@ -67,12 +67,17 @@ function App() {
           <div className={`App ${theme}`}>
             <div className='quiz-container'>
               <QuizContext.Provider value=
-                {{ quizState, setQuizState, score, setScore }}>
+                {{ quizState,
+                  setQuizState,
+                  quizLevel,
+                  setQuizLevel,
+                  selectedLevel,
+                  setSelectedLevel,
+                  score,
+                  setScore, }}>
                 {quizState === "Start" && <StartGame />}
                 {quizState === "Levels" && <Levels />}
-                {quizState === "QuizEasy" && <QuizEasy />}
-                {quizState === "QuizMedium" && <QuizMedium />}
-                {quizState === "QuizHard" && <QuizHard />}
+                {quizState === "Quiz" && <Quiz />}
                 {quizState === "Scoreboard" && <Scoreboard />}
               </QuizContext.Provider>
             </div>

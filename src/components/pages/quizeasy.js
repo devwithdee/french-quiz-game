@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Questions } from '../Helpers/level1questions';
-import { QuizContext } from '../Helpers/Context';
+import React, { useState, useContext, useRef, useEffect } from "react";
+import { QuizContext } from '../Helpers/quizContext';
 import { RestartButton } from "../CommonUI/restartButton";
 import { useAccessibilityContext } from "../Helpers/accessibilityContext";
 import { AccessibleFeature } from "../../features/text_to_speech/accessibility";
@@ -8,17 +7,32 @@ import { AccessibleFeature } from "../../features/text_to_speech/accessibility";
 
 
 function Quiz() {
+
+
     //import speechcontext to keep track of speechsynthesis state
     const { speechState, setSpeechState } = useAccessibilityContext();
 
     //import quizcontext to keep track of quizstate and score
 
-    const { score, setScore, setQuizState } = useContext(QuizContext);
+    const { quizLevel, score, setScore, setQuizState } = useContext(QuizContext);
 
     //create state to keep track of questions and update the question based on the state
 
     const [currQuestion, setCurrQuestion] = useState(0);
 
+    const [buttonColor, setButtonColor] = useState('correct');
+
+    const [disabled, setDisabled] = useState(false);
+
+    const correctButtonRef = useRef(null);
+    const incorrectButtonRef = useRef(null);
+
+    useEffect(() => {
+        if (correctButtonRef.onClick) {
+            setButtonColor('correct');
+            console.log("that is the correct button");
+        }
+    },[setButtonColor,buttonColor])
 
     /*when the button is clicked load the next set of questions and answers 
     everytime an button is clicked update the score if the answer is correct 
@@ -27,23 +41,16 @@ function Quiz() {
 
     const handleButtonClick = (iscorrect) => {
 
-        const nextQuestion = currQuestion + 1;
         //add to score if true
         if (iscorrect === true) {
             setScore(score + 1);
-            
-        }
-        //go to the next question after answer is clicked
-        if (nextQuestion < Questions.length) {
-            setCurrQuestion(nextQuestion);
+            setDisabled(true);
 
-        
-        } else {
-            //all questions complete show score
-            setQuizState("Scoreboard");
-            
+        } else if (iscorrect === false) {
+            setButtonColor("incorrect");
+            setDisabled(true);
         }
-            //stop speechsynthesis api from speaking if an answer is clicked
+        //stop speechsynthesis api from speaking if an answer is clicked
         if (speechState !== "stopped") {
             window.speechSynthesis.cancel();
             setSpeechState("stopped");
@@ -51,34 +58,65 @@ function Quiz() {
         }
     }
 
-    
+    //set the button color to the correct and incorrect answers
 
-    //create function to speak message when button is clicked
 
+    const nextQuestionClick = () => {
+
+        const nextQuestion = currQuestion + 1;
+
+        //go to the next question after answer is clicked
+        if (nextQuestion < quizLevel.length) {
+            setCurrQuestion(nextQuestion);
+        } else {
+            //all questions complete show score
+            setQuizState("Scoreboard");
+
+        }
+        setDisabled(false);
+    }
+
+    if (!quizLevel || quizLevel.length === 0) {
+        return <div>No questions available for the selected level.</div>;
+    }
+
+    const currentQuestion = quizLevel[currQuestion];
+
+    // Access the 'question' property from the 'currentQuestion' object
     const questionText =
-        Questions[currQuestion]?.question + " translates to which of the following words? " +
-        Questions[currQuestion].answerOptions
+        currentQuestion.question +
+        " translates to which of the following words? " +
+        currentQuestion.answerOptions
             .map((answerOption) => answerOption.answers)
             .join(", ");
-    console.log("Current Question Index:", currQuestion);
-    console.log("Question Text:", questionText);
-
-
 
 
     return (
+
         <div className="quiz-container">
             <div className="question-container">
-                <h1>{Questions[currQuestion].question}</h1>
+                <h1>{currentQuestion.question}</h1>
                 <AccessibleFeature question={questionText} />
 
             </div>
             <div className="answer-container">
-                {Questions[currQuestion].answerOptions.map((answerOption) => (
-                    <button id="answerBtn" onClick={() => handleButtonClick(answerOption.iscorrect)} >
+                {currentQuestion.answerOptions.map((answerOption, index) => (
+                    <button
+                        disabled={disabled}
+                        key={index}
+                        id="answerBtn"
+                        className={`answerBtn ${buttonColor}`}
+                        ref={(el) =>
+                            answerOption.iscorrect
+                              ? (correctButtonRef.current = el)
+                              : (incorrectButtonRef.current = el)
+                          }
+                        onClick={() => handleButtonClick(answerOption.iscorrect)}
+                    >
                         {answerOption.answers}
                     </button>
                 ))}
+                <button id="next" onClick={nextQuestionClick}>Next</button>
                 < RestartButton />
             </div>
         </div>

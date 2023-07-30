@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { QuizContext } from "../Helpers/Context";
+import { QuizContext } from "../Helpers/quizContext";
 
 
 export default function StartGame() {

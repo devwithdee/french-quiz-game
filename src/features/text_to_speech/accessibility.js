@@ -62,7 +62,7 @@ export const AccessibleFeature = (props) => {
     <div className="accessibility-container">
       <div className="speed-container">
         <label htmlFor="speed">Speed</label>
-        <fieldset class="slider-container">
+        <fieldset className="slider-container">
           <input
             className="input-slider"
             type="range"

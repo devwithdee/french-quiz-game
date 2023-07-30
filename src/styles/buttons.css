@@ -62,3 +62,10 @@ button {
     color: rgb(3, 19, 71);;
   }
   
+ .correct .answerBtn{
+    background-color: green;
+  }
+
+  .answerBtn .incorrect {
+    background-color: red;
+  }

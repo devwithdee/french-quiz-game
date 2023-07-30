@@ -1,4 +1,4 @@
-import { QuizContext } from '../Helpers/Context';
+import { QuizContext } from '../Helpers/quizContext';
 import { useContext } from 'react';
 
 export const RestartButton = () => {
