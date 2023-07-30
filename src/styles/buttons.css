@@ -41,6 +41,10 @@ button {
     background-color: rgb(73, 136, 64);
   }
 
+  .light .restart-bttn {
+    background-color: rgb(255, 220, 171);
+  }
+
   .start-bttn {
     background-color: #ffffff;
     color: rgb(36, 36, 36);
@@ -62,10 +66,14 @@ button {
     color: rgb(3, 19, 71);;
   }
   
- .correct .answerBtn{
-    background-color: green;
+ .correct{
+    background-color: rgb(0, 219, 0) !important;
   }
 
-  .answerBtn .incorrect {
-    background-color: red;
+  .incorrect{
+    background-color: rgb(255, 28, 28) !important;
+  }
+
+  .none {
+    background-color: white !important;
   }

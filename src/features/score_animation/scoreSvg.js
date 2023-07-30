@@ -40,8 +40,8 @@ export const ScoreSVG = () => {
         <svg width="160px" height="160px">
                 <defs>
                     <linearGradient id="GradientColor">
-                        <stop offset="0%" stop-color="#14CBC6" />
-                        <stop offset="100%" stop-color="#14CB30" />
+                        <stop offset="0%" stopColor="#14CBC6" />
+                        <stop offset="100%" stopColor="#14CB30" />
                     </linearGradient>
                 </defs>
                 <circle id="circle" cx="80" cy="80" r="70" strokeLinecap="round" strokeDashoffset={strokeDashoffset}

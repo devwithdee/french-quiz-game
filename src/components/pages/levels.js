@@ -8,7 +8,6 @@ export default function Levels() {
 
     // Initialize selectedLevel state with the questions data for the initial level (e.g., "easy")
 
-
     useEffect(() => {
         // Fetch the questions based on the selected level and set the quizLevel state
         setQuizLevel(questionsData[selectedLevel]);

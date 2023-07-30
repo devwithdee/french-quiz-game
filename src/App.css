@@ -4,22 +4,35 @@
 @import url(./styles/mediaqueries.css);
 
 html {
-    margin: 0 auto;
-    padding: 0;
-    font-family: 'ABeeZee', sans-serif;
-    font-size: 16px;
-  }
-  
-  body {
-    overflow-x: hidden;
-    background-color: black;
-  }
-  
-  .dark {
-    background-color: #0D1F61 ;
-    color: #e6ccb4;
-  }
-  .light {
-    background-color: #e7d8c9;
-    color: #0D1F61;
-  }
+  margin: 0 auto;
+  padding: 0;
+  font-family: 'ABeeZee', sans-serif;
+  font-size: 16px;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: black;
+}
+
+.dark {
+  background-color: #0D1F61;
+  color: #e6ccb4;
+  background-image: url(./components/CommonUI/eiffeltowerdark.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.light {
+  background-color: #f6ebe0;
+  color: #0D1F61;
+  background-image: url(./components/CommonUI/eiffeltowerlight.jpg);
+  background-size:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.light .quiz-container {
+  background-color: rgba(126, 201, 224, 0.435);
+}

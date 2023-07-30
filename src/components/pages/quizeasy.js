@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { QuizContext } from '../Helpers/quizContext';
 import { RestartButton } from "../CommonUI/restartButton";
 import { useAccessibilityContext } from "../Helpers/accessibilityContext";
@@ -20,69 +20,80 @@ function Quiz() {
 
     const [currQuestion, setCurrQuestion] = useState(0);
 
-    const [buttonColor, setButtonColor] = useState('correct');
+    //initialize an array to hold in state variable for answer button classes
+
+    const [buttonClasses, setButtonClasses] = useState({});
+
+    //initialize state for disabled buttons
 
     const [disabled, setDisabled] = useState(false);
+
+    //create reference for correct and incorrect answer options
 
     const correctButtonRef = useRef(null);
     const incorrectButtonRef = useRef(null);
 
-    useEffect(() => {
-        if (correctButtonRef.onClick) {
-            setButtonColor('correct');
-            console.log("that is the correct button");
-        }
-    },[setButtonColor,buttonColor])
+    //initialize state to hold the user selected answer
 
-    /*when the button is clicked load the next set of questions and answers 
-    everytime an button is clicked update the score if the answer is correct 
-    and load next question if the last question is longer than the questions 
-    array then change the quizstate to results*/
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
 
-    const handleButtonClick = (iscorrect) => {
 
-        //add to score if true
+    /* function to execute once an answer is chosen */
+
+    const handleButtonClick = (iscorrect, index) => {
         if (iscorrect === true) {
+            //update score if correct
             setScore(score + 1);
+            //disable options
             setDisabled(true);
+            //change the state of selected answer to true
+            setSelectedAnswer('true');
+            //store the class of the selected answer as correct
+            setButtonClasses(prevClasses => ({ ...prevClasses, [index]: 'correct' }));
+
 
         } else if (iscorrect === false) {
-            setButtonColor("incorrect");
+            //disable options
             setDisabled(true);
+            //change the state of selected answer to false
+            setSelectedAnswer('false');
+            //store the class of the selected answer as incorrect
+            setButtonClasses(prevClasses => ({ ...prevClasses, [index]: 'incorrect' }));
+
+
         }
-        //stop speechsynthesis api from speaking if an answer is clicked
+        //stop speechsynthesis api from speaking if an option is clicked
         if (speechState !== "stopped") {
             window.speechSynthesis.cancel();
             setSpeechState("stopped");
             console.log("all stopped");
         }
+
+        //set quizState to scoreboard if end of quiz
+        if (currQuestion >= quizLevel.length -1) {
+            setQuizState("Scoreboard");
+            console.log(quizLevel.length);
+        } 
     }
 
-    //set the button color to the correct and incorrect answers
-
-
     const nextQuestionClick = () => {
-
-        const nextQuestion = currQuestion + 1;
-
-        //go to the next question after answer is clicked
-        if (nextQuestion < quizLevel.length) {
-            setCurrQuestion(nextQuestion);
-        } else {
-            //all questions complete show score
-            setQuizState("Scoreboard");
-
-        }
+        // Reset button classes and other states for the next question
+        setCurrQuestion(currQuestion + 1);
+        setButtonClasses({});
+        setSelectedAnswer(null);
         setDisabled(false);
     }
 
+
+    //return error if quiz questions null
     if (!quizLevel || quizLevel.length === 0) {
         return <div>No questions available for the selected level.</div>;
-    }
+    } 
 
+    //set the current question
     const currentQuestion = quizLevel[currQuestion];
 
-    // Access the 'question' property from the 'currentQuestion' object
+    //set the text for the speechapi from the current quiz question and options
     const questionText =
         currentQuestion.question +
         " translates to which of the following words? " +
@@ -90,6 +101,7 @@ function Quiz() {
             .map((answerOption) => answerOption.answers)
             .join(", ");
 
+    
 
     return (
 
@@ -105,14 +117,13 @@ function Quiz() {
                         disabled={disabled}
                         key={index}
                         id="answerBtn"
-                        className={`answerBtn ${buttonColor}`}
+                        className={buttonClasses[index]}
                         ref={(el) =>
                             answerOption.iscorrect
-                              ? (correctButtonRef.current = el)
-                              : (incorrectButtonRef.current = el)
-                          }
-                        onClick={() => handleButtonClick(answerOption.iscorrect)}
-                    >
+                                ? (correctButtonRef.current = el)
+                                : (incorrectButtonRef.current = el)
+                        }
+                        onClick={() => handleButtonClick(answerOption.iscorrect, index)}                    >
                         {answerOption.answers}
                     </button>
                 ))}

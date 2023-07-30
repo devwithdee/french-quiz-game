@@ -9,7 +9,7 @@ export default function StartGame() {
     const { setQuizState } = useContext(QuizContext);
 
     return (
-        <div>
+        <div className="start-container">
             <h1>French Quiz</h1>
             <p className="intro">Welcome to the French Quiz Adventure!
                 Embark on a journey to test and sharpen your French skills!

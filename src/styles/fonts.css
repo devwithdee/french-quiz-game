@@ -17,3 +17,32 @@
     text-align: center;
 
   }
+
+  .dark h1 {
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    color: rgb(255, 250, 244);
+
+  }
+  .dark p {
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    font-weight: 600;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    color: rgb(255, 250, 244);
+
+  }
+
+  .light h1 {
+    background-color: rgba(255, 255, 255, 0.75);
+    width: 100%;
+  }
+  .light p {
+    background-color: rgba(255, 255, 255, 0.75);
+    width: 100%;
+    font-weight: 600;
+    font-size: 1.4em;
+    line-height: 1.5em;
+
+  }
